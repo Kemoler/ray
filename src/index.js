@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { View, Panel, PanelHeader, Group, List, ListItem, Root, CellButton, HeaderButton, Tabs, TabsItem, FixedLayout, HorizontalScroll  } from '@vkontakte/vkui';
+import { View, Panel, PanelHeader, Group, List, ListItem, CellButton, HeaderButton, Tabs, TabsItem, FixedLayout, HorizontalScroll } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 class Example extends React.Component {
