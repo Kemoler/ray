@@ -1,22 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { View, Panel, PanelHeader, Group, List, ListItem } from '@vkontakte/vkui';
-import '@vkontakte/vkui/dist/vkui.css';
+import PropTypes from 'prop-types';
+import { Panel, ListItem, Button, Group, Div, Avatar, PanelHeader } from '@vkontakte/vkui';
 
-function App () {
-  return (
-    <View activePanel="main">
-      <Panel id="main">
-        <PanelHeader>VKUI</PanelHeader>
-        <Group title="Items">
-          <List>
-            <ListItem>Hello</ListItem>
-            <ListItem>World</ListItem>
-          </List>
-        </Group>
-      </Panel>
-    </View>
-  );
-}
+const Home = props => (
+	<Panel id={props.id}>
+		<PanelHeader>Example</PanelHeader>
+		{props.fetchedUser &&
+		<Group title="User Data Fetched with VK Connect">
+			<ListItem
+				before={<Avatar src={props.fetchedUser.photo_200}/>}
+				description={props.fetchedUser.city.title}
+			>
+				{`${props.fetchedUser.first_name} ${props.fetchedUser.last_name}`}
+			</ListItem>
+		</Group>}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+		<Group title="Navigation Example">
+			<Div>
+				<Button size="xl" level="2" onClick={props.go} data-to="persik">
+					Show me the Persik, please
+				</Button>
+			</Div>
+		</Group>
+	</Panel>
+);
+
+Home.propTypes = {
+	id: PropTypes.string.isRequired,
+	go: PropTypes.func.isRequired,
+	fetchedUser: PropTypes.shape({
+		photo_200: PropTypes.string,
+		first_name: PropTypes.string,
+		last_name: PropTypes.string,
+		city: PropTypes.shape({
+			title: PropTypes.string,
+		}),
+	}),
+};
+
+export default Home;
